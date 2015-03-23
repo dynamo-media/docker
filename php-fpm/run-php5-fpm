@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Template the php-fpm.conf file with the environment variables
+sed -ie "s|^user =.*$|user = ${USER}|g" /etc/php5/fpm/php-fpm.conf
+sed -ie "s|^group =.*$|group = ${GROUP}|g" /etc/php5/fpm/php-fpm.conf
+sed -ie "s|^listen =.*$|listen = ${LISTEN}|g" /etc/php5/fpm/php-fpm.conf
+
+/usr/sbin/php5-fpm
