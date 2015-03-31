@@ -6,7 +6,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV USER www-data
 ENV GROUP www-data
-ENV LISTEN 127.0.0.1:9000
+ENV LISTEN 0.0.0.0:9000
 
 COPY php-fpm.conf /etc/php5/fpm/
 COPY run-php5-fpm /run-php5-fpm
