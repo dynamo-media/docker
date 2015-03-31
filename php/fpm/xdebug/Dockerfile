@@ -1,4 +1,4 @@
-FROM dynamo/php:5.5-fpm
+FROM dynamo/php:fpm
 
 RUN apt-get update && apt-get install -y php5-xdebug
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
