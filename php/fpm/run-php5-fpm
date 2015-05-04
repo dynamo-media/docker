@@ -14,16 +14,24 @@ sed -ie "s|^pm\.max_requests =.*$|pm\.max_requests = ${PM_MAX_REQUESTS}|g" /etc/
 sed -ie "s|^newrelic.license =.*$|newrelic.license = ${NR_INSTALL_KEY}|g" /etc/php5/fpm/conf.d/newrelic.ini
 sed -ie "s|^newrelic.license =.*$|newrelic.license = ${NR_INSTALL_KEY}|g" /etc/php5/cli/conf.d/newrelic.ini
 
+cat > /etc/php5/mods-available/opcache.ini << EOL
+; configuration for php ZendOpcache module
+; priority=05
+zend_extension=opcache.so
+EOL
+
 # Add in the production opcache configuration
 #
 # PHP-fpm will have to be reloaded everytime the PHP file change
 if [ "${OPCACHE_PRODUCTION}" == "yes" ]; then
-  echo "opcache.revalidate_freq=0" >> /etc/php5/mods-available/opcache.ini
-  echo "opcache.validate_timestamps=0" >> /etc/php5/mods-available/opcache.ini
-  echo "opcache.max_accelerated_files=3000" >> /etc/php5/mods-available/opcache.ini
-  echo "opcache.memory_consumption=192" >> /etc/php5/mods-available/opcache.ini
-  echo "opcache.interned_strings_buffer=16" >> /etc/php5/mods-available/opcache.ini
-  echo "opcache.fast_shutdown=1" >> /etc/php5/mods-available/opcache.ini
+cat >> /etc/php5/mods-available/opcache.ini << EOL
+opcache.revalidate_freq=0
+opcache.validate_timestamps=0
+opcache.max_accelerated_files=3000
+opcache.memory_consumption=192
+opcache.interned_strings_buffer=16
+opcache.fast_shutdown=1
+EOL
 fi
 
 exec /usr/sbin/php5-fpm
