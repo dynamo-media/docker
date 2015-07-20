@@ -1,0 +1,20 @@
+#!/bin/bash
+
+main() {
+	local container_id="$1"; shift
+	local port="$1"; shift
+	local path="$1"; shift
+	local opts="$@"
+	
+	local ip="$(docker inspect -f "{{.NetworkSettings.IPAddress}}" $container_id)"
+	curl \
+		--silent \
+		--show-error \
+		--fail \
+		--dump-header /dev/stderr \
+		--retry 2 \
+		$opts \
+		http://$ip:$port$path > /dev/null
+}
+
+main $@
