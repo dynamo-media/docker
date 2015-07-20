@@ -3,6 +3,6 @@
   "server": true,
   "dns_config": {
     "allow_stale": true,
-    "max_stale": 5s
+    "max_stale": "5s"
   }
 }
