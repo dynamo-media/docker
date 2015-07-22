@@ -1,8 +1,14 @@
 {
+  "data_dir": "/data",
   "ui_dir": "/ui",
   "server": true,
   "dns_config": {
     "allow_stale": true,
     "max_stale": "5s"
-  }
+  },
+  "ports": {
+    "dns": 53
+  },
+  "recursor": "8.8.8.8",
+  "disable_update_check": true
 }
