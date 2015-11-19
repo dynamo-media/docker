@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y ca-certificates curl libxml2 --no-insta
     sed -ie "s|^expose_php =.*$|expose_php = Off|g" /etc/php5/fpm/php.ini && \
     ln -sfn ../../mods-available/mcrypt.ini /etc/php5/fpm/conf.d/20-mcrypt.ini && \
     ln -sfn ../../mods-available/mcrypt.ini /etc/php5/cli/conf.d/20-mcrypt.ini && \
-    export NR_INSTALL_SILENT=true; curl -O http://download.newrelic.com/php_agent/release/newrelic-php5-4.23.4.113-linux.tar.gz && tar -xf newrelic-php5-4.23.4.113-linux.tar.gz && ./newrelic-php5-4.23.4.113-linux/newrelic-install install
+    export NR_INSTALL_SILENT=true; curl -O http://download.newrelic.com/php_agent/archive/5.1.1.130/newrelic-php5-5.1.1.130-linux.tar.gz && tar -xf newrelic-php5-4.23.4.113-linux.tar.gz && ./newrelic-php5-4.23.4.113-linux/newrelic-install install
 
 COPY php-fpm.conf /etc/php5/fpm/
 
