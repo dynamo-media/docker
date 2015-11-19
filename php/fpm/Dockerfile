@@ -17,7 +17,7 @@ ENV NR_INSTALL_KEY aaaaaaaaaabbbbbbbbbbccccccccccdddddddddd
 COPY run-php5-fpm /run-php5-fpm
 
 RUN apt-get update && apt-get install -y ca-certificates curl libxml2 --no-install-recommends && \ 
-    apt-get install -y php5-fpm php5-cli php5-curl php5-gd php5-mcrypt php5-memcache php5-mysql php5-intl php5-redis php5-mbstring && \
+    apt-get install -y php5-fpm php5-cli php5-curl php5-gd php5-mcrypt php5-memcache php5-mysql php5-intl php5-redis && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && chmod a+x /run-php5-fpm && \
     sed -ie "s|^expose_php =.*$|expose_php = Off|g" /etc/php5/fpm/php.ini && \
     ln -sfn ../../mods-available/mcrypt.ini /etc/php5/fpm/conf.d/20-mcrypt.ini && \
